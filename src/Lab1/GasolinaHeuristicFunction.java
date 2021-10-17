@@ -2,6 +2,11 @@ package Lab1;
 
 import aima.search.framework.HeuristicFunction;
 
+import Lab1.Camion.Camion;
+import Lab1.Peticiones.Peticion;
+import Lab1.Peticiones.PeticionFactory;
+import java.util.List;
+
 
 public class GasolinaHeuristicFunction implements HeuristicFunction{
 
@@ -26,9 +31,28 @@ public class GasolinaHeuristicFunction implements HeuristicFunction{
         * GasolinaBoard board = (GasolinaBoard)state;
         *
         * */
+
+        //Dinero ganado por las peticiones cumplidass
+        List<Peticion> peticiones = state.peticiones();
+
+
+
+        //Dinero perdido en los Km recorridos por los camiones
+        List<Camion> camiones = state.camiones();
+        int perdidaCamiones = 0;
+        for (int i= 0; i < camiones.size(); i++){
+            //Sumatorio de: 2 * (Km disponibles de los camiones inicialmente - Km Que todaviapueden recorrer)
+            perdidaCamiones = perdidaCamiones + (2 * (640 - camiones.get(i).getKmDisponibles() ) );
+        }
+
+        //return ganancia peticiones - perdidaCamiones;
+
+
+
         return 0.0;
 
     }
+
 
 }
 /*
