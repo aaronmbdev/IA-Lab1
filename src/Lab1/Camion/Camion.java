@@ -46,6 +46,10 @@ public class Camion {
         int distancia = Utils.computeDistance(coordX,coordY,x,y);
         return puedoHacerViaje(distancia);
     }
+    
+    public int getKmDisponibles() {
+        return kmDisponibles;
+    }
 
     private void updateBalance(final int dias, final int depositos) {
         double charge = GAS_PRICE * depositos;
