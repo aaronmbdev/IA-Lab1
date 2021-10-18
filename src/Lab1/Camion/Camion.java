@@ -55,6 +55,10 @@ public class Camion {
         return kmDisponibles;
     }
 
+    public int getKmDisponibles() {
+        return kmDisponibles;
+    }
+
     private void updateBalance(final int dias, final int depositos) {
         double charge = GAS_PRICE * depositos;
         int porcentaje = 102;
