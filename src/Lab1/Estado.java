@@ -14,4 +14,5 @@ public class Estado {
         this.camiones = camiones;
         this.peticiones = peticiones;
     }
+
 }
