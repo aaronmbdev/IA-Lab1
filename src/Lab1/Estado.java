@@ -14,4 +14,12 @@ public class Estado {
         this.camiones = camiones;
         this.peticiones = peticiones;
     }
+
+    public List<Camion> getCamiones() {
+        return camiones;
+    }
+
+    public List<Peticion> getPeticiones() {
+        return peticiones;
+    }
 }
