@@ -15,4 +15,10 @@ public class Estado {
         this.peticiones = peticiones;
     }
 
+    public boolean isGoalState() {
+        for(Camion c: camiones){
+            if (c.mePuedoMover()) return false;
+        }
+        return true;
+    }
 }

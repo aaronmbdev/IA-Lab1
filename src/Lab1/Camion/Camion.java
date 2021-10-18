@@ -39,7 +39,11 @@ public class Camion {
     }
 
     public boolean puedoHacerViaje(final int distancia) {
-        return this.kmDisponibles - (distancia*2) >= 0 && viajes > 0;
+        return this.kmDisponibles - (distancia*2) >= 0 && viajes > 1;
+    }
+
+    public boolean mePuedoMover() {
+        return  this.kmDisponibles > 0 && viajes > 1;
     }
 
     public boolean puedoHacerViaje(final int x, final int y) {
@@ -89,5 +93,7 @@ public class Camion {
         this.coordX = destX;
         this.coordY = destY;
         this.balance = this.balance - calcularGasto(distancia);
+        this.kmDisponibles = this.kmDisponibles - distancia;
+        this.viajes--;
     }
 }
