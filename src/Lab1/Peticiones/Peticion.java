@@ -11,6 +11,7 @@ public class Peticion {
         this.coordX = coordX;
         this.coordY = coordY;
         this.cumplido = false;
+
     }
 
     public void setCumplido(boolean cumplido) {
@@ -32,4 +33,9 @@ public class Peticion {
         }
     }
 
+
+
+    public void setCumplido(boolean cumplido) {
+        this.cumplido = cumplido;
+    }
 }

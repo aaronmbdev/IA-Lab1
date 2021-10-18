@@ -20,7 +20,9 @@ public class GasolinerasDemo {
         List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
         Estado inicial = new Estado(camiones,peticiones);
+        System.out.println("Soy gay");
     }
+
 
 
 
