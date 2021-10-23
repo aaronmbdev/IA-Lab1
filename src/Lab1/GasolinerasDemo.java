@@ -28,14 +28,17 @@ public class GasolinerasDemo {
         Estado inicial = new Estado(camiones,peticiones);
         System.out.println("Soy un genio");
 
-        ElectricaHillClimbingSearch(inicial);
+        System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
+
+
+        HillClimbingSearchAux(inicial);
     }
 
 
 
 
 
-    private static void ElectricaHillClimbingSearch( Estado board) {
+    private static void HillClimbingSearchAux( Estado board) {
         System.out.println("\nHillClimbing  -->");
         try {
 

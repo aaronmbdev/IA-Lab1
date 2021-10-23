@@ -38,4 +38,9 @@ public class Estado {
     public int getNumeroPeticiones(){
         return peticiones.size();
     }
+
+    public int getNumeroCamiones(){
+        return camiones.size();
+    }
+
 }

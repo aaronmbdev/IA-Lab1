@@ -1,11 +1,9 @@
 package Lab1;
 
-import aima.search.framework.HeuristicFunction;
-
 import Lab1.Camion.Camion;
 import Lab1.Peticiones.Peticion;
-import Lab1.Estado.*;
-import Lab1.Peticiones.PeticionFactory;
+import aima.search.framework.HeuristicFunction;
+
 import java.util.List;
 
 
@@ -33,7 +31,7 @@ public class GasolinaHeuristicFunction implements HeuristicFunction{
                 gananciasPeticiones += peticione.getGananciasActuales();
             }
         }
-        return gananciasPeticiones - perdidaCamiones;
+        return (gananciasPeticiones - perdidaCamiones);
 
     }
 
