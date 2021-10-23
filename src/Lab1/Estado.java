@@ -22,6 +22,7 @@ public class Estado {
 
     public List<Peticion> getPeticiones() {
         return peticiones;
+    }
 
     public boolean isGoalState() {
         for(Camion c: camiones){

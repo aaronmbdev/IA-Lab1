@@ -34,8 +34,4 @@ public class Peticion {
     }
 
 
-
-    public void setCumplido(boolean cumplido) {
-        this.cumplido = cumplido;
-    }
 }
