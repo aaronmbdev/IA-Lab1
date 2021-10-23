@@ -15,6 +15,10 @@ public class Estado {
         this.peticiones = peticiones;
     }
 
+    public Estado(Estado e){
+        camiones = e.getCamiones();
+        peticiones = e.getPeticiones();
+    }
 
     public List<Camion> getCamiones() {
         return camiones;
@@ -30,5 +34,8 @@ public class Estado {
         }
         return true;
 
+    }
+    public int getNumeroPeticiones(){
+        return peticiones.size();
     }
 }
