@@ -11,7 +11,10 @@ public class GasolinaHeuristicFunction implements HeuristicFunction{
 
     //implementa la función heurística
     public double getHeuristicValue(Object estado){
+
         //Cast
+
+        int contadorPeticionesCumplidas = 0;
         Estado estadoActual = (Estado)estado;
 
         //Dinero perdido en los Km recorridos por los camiones
@@ -28,9 +31,11 @@ public class GasolinaHeuristicFunction implements HeuristicFunction{
         List<Peticion> peticiones = estadoActual.getPeticiones();
         for (Peticion peticione : peticiones) {
             if (peticione.isCumplido()) {
+                contadorPeticionesCumplidas++;
                 gananciasPeticiones += peticione.getGananciasActuales();
             }
         }
+//        System.out.println( "Ganancias:" + (gananciasPeticiones - perdidaCamiones) + " Peticiones cumplidas:" + contadorPeticionesCumplidas );
         return (gananciasPeticiones - perdidaCamiones);
 
     }

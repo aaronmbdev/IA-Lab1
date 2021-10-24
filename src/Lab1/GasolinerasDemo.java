@@ -20,18 +20,26 @@ import java.util.Properties;
  */
 public class GasolinerasDemo {
     public static void main(String[] args){
+
+        long inicio = System.currentTimeMillis();
+
         Gasolineras gas = new Gasolineras(Utils.getRandNumber(20),Utils.getRandNumber(3219));
         CentrosDistribucion dist = new CentrosDistribucion(Utils.getRandNumber(10),1,Utils.getRandNumber(3219));
 
         List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
         Estado inicial = new Estado(camiones,peticiones);
-        System.out.println("Soy un genio");
 
         System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
 
 
         HillClimbingSearchAux(inicial);
+
+        long fin = System.currentTimeMillis();
+
+        System.out.println("inicio: " + inicio);
+        System.out.println("fin: " + fin);
+        System.out.println("tiempo: " + (fin- inicio) + "ms");
     }
 
 

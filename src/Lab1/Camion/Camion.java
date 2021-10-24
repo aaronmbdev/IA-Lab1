@@ -10,6 +10,17 @@ public class Camion {
     private int coordBaseX,coordBaseY, viajes, kmDisponibles;
     private static double GAS_PRICE = 1000.00;
 
+    private Camion() {
+        this.coordBaseX = -1;
+        this.coordX = -1;
+        this.coordBaseY = -1;
+        this.coordY = -1;
+        this.estado = EstadoCisterna.LLENO;
+//        this.balance = 0;
+        this.viajes = 5;
+        this.kmDisponibles = 640;
+    }
+
     public Camion(final int originX, final int originY) {
         this.coordBaseX = originX;
         this.coordX = originX;
@@ -33,7 +44,9 @@ public class Camion {
 //            updateBalance(dias, depositos);
             desplazar(coordBaseX,coordBaseY /*,distanciaRetorno*/);
         } else {
+
             System.out.println("No se puede hacer el viaje, km o viajes excedidos.");
+            System.out.println("KM:" + kmDisponibles + " Viajes:" + viajes);
         }
 
     }
@@ -41,7 +54,7 @@ public class Camion {
 
 
     public boolean mePuedoMover() {
-        return  this.kmDisponibles > 0 && viajes > 1;
+        return  ((kmDisponibles > 0) && (viajes >= 1));
     }
 
     public boolean puedoHacerViaje(final int x, final int y) {
@@ -51,10 +64,14 @@ public class Camion {
         int distanciaDestino = Utils.computeDistance(coordX,coordY,x,y);
 
         if (estado == EstadoCisterna.LLENO) {
-            return  viajes > 1 && this.kmDisponibles - (distanciaDestino*2) >= 0 ;
+            return  viajes >= 1 && this.kmDisponibles - (distanciaDestino*2) >= 0 ;
         }
-        else /* (estado == EstadoCisterna.MEDIO_LLENO)*/{
-            return (viajes > 1 && (this.kmDisponibles - distanciaDestino - Utils.computeDistance(x,y,coordBaseX,coordBaseY) >= 0));
+        else if (estado == EstadoCisterna.MEDIO_LLENO){
+            return (viajes >= 1 && (this.kmDisponibles - distanciaDestino - Utils.computeDistance(x,y,coordBaseX,coordBaseY) >= 0));
+        }
+        else{
+            System.out.println("ERROR");
+            return false;
         }
 
     }
@@ -93,8 +110,8 @@ public class Camion {
         }
         System.out.println("Error: Se ha intentado repostar con el depósito vacío");*/
 
-        if(estado == EstadoCisterna.LLENO) estado = EstadoCisterna.MEDIO_LLENO;
-        else if(estado == EstadoCisterna.MEDIO_LLENO) estado = EstadoCisterna.VACIO;
+        if(this.estado == EstadoCisterna.LLENO) this.estado = EstadoCisterna.MEDIO_LLENO;
+        else if(this.estado == EstadoCisterna.MEDIO_LLENO) this.estado = EstadoCisterna.VACIO;
         else /*estado == EstadoCisterna.VACIO*/ System.out.println("Error: Se ha intentado repostar con el depósito vacío");
     }
 
@@ -103,24 +120,68 @@ public class Camion {
     }
 
     private void desplazar(final int destX, final int destY /*, final int distancia*/) {
-        this.coordX = destX;
-        this.coordY = destY;
+
 //        this.balance = this.balance - calcularGasto(distancia);
 //        this.kmDisponibles = this.kmDisponibles - distancia;
-        this.viajes--;
 
         //De su ubicación actual (la base) a su gasolinera destino
+
         if(estado == EstadoCisterna.MEDIO_LLENO){
+            this.coordX = destX;
+            this.coordY = destY;
             kmDisponibles -= Utils.computeDistance(coordX, coordY, destX, destY);
         }
 
         //de su ubicacion actual hasta la gasolinera y luego hacia la base donde se recarga la sisterna
-        else /*(estado == EstadoCisterna.VACIO)*/{
+        else if (estado == EstadoCisterna.VACIO){
             kmDisponibles -= Utils.computeDistance(coordX, coordY, destX, destY);
             kmDisponibles -= Utils.computeDistance(destX, destY, coordBaseX, coordBaseY);
 
+            this.coordX = this.coordBaseX;
+            this.coordY = this.coordBaseY;
             this.viajes--;
+
             this.estado  = EstadoCisterna.LLENO;
         }
+        else System.out.println("Camíon LLENO ERROR");
+    }
+
+    public EstadoCisterna getEstadoCisterna() {
+        return estado;
+    }
+
+    public int getViajes() {
+        return viajes;
+    }
+
+    public Camion getCopy(){
+        Camion c = new Camion();
+
+        c.coordBaseX = this.coordBaseX;
+        c.coordX = this.coordX;
+        c.coordBaseY = this.coordBaseY;
+        c.coordY = this.coordY;
+
+        //nota
+        c.estado = this.estado;
+
+        c.viajes = this.viajes;
+        c.kmDisponibles = this.kmDisponibles;
+        c.GAS_PRICE = this.GAS_PRICE;
+
+        /*
+        System.out.println(
+                c.coordX + " " +
+                c.coordY + " " +
+                c.coordBaseX + " " +
+                c.coordBaseY + " " +
+                c.estado + " " +
+                c.kmDisponibles + " " +
+                c.viajes + " ");*/
+
+        return c;
+//            this.estado = EstadoCisterna.LLENO;
+
+
     }
 }
