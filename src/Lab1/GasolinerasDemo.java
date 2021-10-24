@@ -23,8 +23,9 @@ public class GasolinerasDemo {
 
         long inicio = System.currentTimeMillis();
 
-        Gasolineras gas = new Gasolineras(Utils.getRandNumber(20),Utils.getRandNumber(3219));
-        CentrosDistribucion dist = new CentrosDistribucion(Utils.getRandNumber(10),1,Utils.getRandNumber(3219));
+
+        Gasolineras gas = new Gasolineras(100,1234);
+        CentrosDistribucion dist = new CentrosDistribucion(10,1,1234);
 
         List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
