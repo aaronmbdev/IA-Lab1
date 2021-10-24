@@ -18,18 +18,37 @@ public class GeneradorSucesores implements SuccessorFunction {
             Peticion p = estadoActual.getPeticiones().get(i);
 
             if (!p.isCumplido()){
-
                 int nc = estadoActual.getNumeroCamiones();
 
                 for (int j = 0; j < nc; ++j) {
+                    System.out.println();
+                    System.out.println("Peticion: "+ i + " Camion:" + j);
                     //se compueba si un camión j puede cumplir la peticion i
 
-                    if (estadoActual.getCamiones().get(j).puedoHacerViaje( p.getCoordX(), p.getCoordY())){
-                        Estado nuevoEstado = new Estado(estadoActual);
-                        nuevoEstado.getCamiones().get(j);
 
-                        nuevoEstado.getCamiones().get(j).llenarGasolinera(nuevoEstado.getPeticiones().get(i).getCoordX(), nuevoEstado.getPeticiones().get(i).getCoordY() );
+                    if (estadoActual.getCamiones().get(j).puedoHacerViaje( p.getCoordX(), p.getCoordY() )){
+
+
+                        Estado nuevoEstado = new Estado(estadoActual);
+                        //nuevoEstado.getCamiones().get(j);
+
+                        nuevoEstado.getCamiones().get(j).llenarGasolinera(
+                                nuevoEstado.getPeticiones().get(i).getCoordX(),
+                                nuevoEstado.getPeticiones().get(i).getCoordY() );
+
                         nuevoEstado.getPeticiones().get(i).setCumplido(true);
+
+                        //System.out.println("petición:" + i + " es hecha por camíon:" + j);
+
+                        System.out.println(
+                                "Coordenadas petición: ("+ p.getCoordX() + ", " + p.getCoordY() +
+                                ") Viaje?: " + estadoActual.getCamiones().get(j).puedoHacerViaje( p.getCoordX(), p.getCoordY() ) +
+                                " Cisterna?:" + estadoActual.getCamiones().get(j).getEstadoCisterna() +
+                                " Mover:"+ estadoActual.getCamiones().get(j).mePuedoMover() +
+                                " km_Disponibles:" +estadoActual.getCamiones().get(j).getKmDisponibles() +
+                                " ViajesRestanses:" + estadoActual.getCamiones().get(j).getViajes()
+                        );
+
 
                         retVal.add(new Successor(nuevoEstado.toString(), nuevoEstado));
 
@@ -64,6 +83,7 @@ public class GeneradorSucesores implements SuccessorFunction {
                 }
             }
         }
+        System.out.println("Número de sucecores creados:" + retVal.size());
         return (retVal);
     }
 

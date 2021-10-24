@@ -3,6 +3,7 @@ package Lab1;
 import Lab1.Camion.Camion;
 import Lab1.Peticiones.Peticion;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Estado {
@@ -16,8 +17,22 @@ public class Estado {
     }
 
     public Estado(Estado e){
-        camiones = e.getCamiones();
-        peticiones = e.getPeticiones();
+//        camiones = e.getCamiones();
+//        peticiones = e.getPeticiones();
+
+        List<Camion> c =  new LinkedList<>();
+        for (int i = 0; i < e.getNumeroCamiones(); i++){
+
+            c.add( e.getCamiones().get(i).getCopy() );
+        }
+        camiones = c;
+
+        List<Peticion> p = new LinkedList<>();
+        for (int j = 0; j < e.getNumeroPeticiones(); j++){
+            p.add( e.getPeticiones().get(j).getCopy() );
+        }
+        peticiones = p;
+
     }
 
     public List<Camion> getCamiones() {
