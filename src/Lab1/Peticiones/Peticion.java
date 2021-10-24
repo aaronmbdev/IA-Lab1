@@ -42,11 +42,9 @@ public class Peticion {
         return cumplido;
     }
 
-
     public double getGananciasActuales(){
         if (diasPendiente == 0) return 1000;
         else{
-            //%𝑝𝑟𝑒𝑐𝑖𝑜 = (100 − 2^𝑑𝑖𝑎𝑠) %
             return 1000 * ((100 - Math.pow(2, diasPendiente) ) / 100);
         }
     }
