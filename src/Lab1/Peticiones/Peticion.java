@@ -14,6 +14,18 @@ public class Peticion {
 
     }
 
+    public int getDiasPendiente() {
+        return diasPendiente;
+    }
+
+    public int getCoordX(){
+        return coordX;
+    }
+
+    public int getCoordY(){
+        return coordY;
+    }
+
     public void setCumplido(boolean cumplido) {
         this.cumplido = cumplido;
     }
@@ -22,9 +34,7 @@ public class Peticion {
         return cumplido;
     }
 
-    public int getDiasPendiente() {
-        return diasPendiente;
-    }
+
     public double getGananciasActuales(){
         if (diasPendiente == 0) return 1000;
         else{
