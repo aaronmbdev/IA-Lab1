@@ -12,25 +12,22 @@ public class GeneradorSucesores implements SuccessorFunction {
     public List getSuccessors(Object estado) {
         ArrayList retVal = new ArrayList();
         Estado estadoActual = (Estado)estado;
-        int np = estadoActual.getNumeroPeticiones();
-        for (int i = 0; i < np; ++i) {
+        int nPeticiones = estadoActual.getNumeroPeticiones();
+        for (int i = 0; i < nPeticiones; ++i) {
 
             Peticion p = estadoActual.getPeticiones().get(i);
 
             if (!p.isCumplido()){
-                int nc = estadoActual.getNumeroCamiones();
+                int numeroCamiones = estadoActual.getNumeroCamiones();
 
-                for (int j = 0; j < nc; ++j) {
+                for (int j = 0; j < numeroCamiones; ++j) {
                     System.out.println();
                     System.out.println("Peticion: "+ i + " Camion:" + j);
                     //se compueba si un camión j puede cumplir la peticion i
 
 
                     if (estadoActual.getCamiones().get(j).puedoHacerViaje( p.getCoordX(), p.getCoordY() )){
-
-
                         Estado nuevoEstado = new Estado(estadoActual);
-                        //nuevoEstado.getCamiones().get(j);
 
                         nuevoEstado.getCamiones().get(j).llenarGasolinera(
                                 nuevoEstado.getPeticiones().get(i).getCoordX(),

@@ -11,5 +11,6 @@
     <orderEntry type="library" name="org.jfree:jfreechart:1.0.14" level="project" />
     <orderEntry type="library" name="jfree:jcommon:1.0.15" level="project" />
     <orderEntry type="library" name="swing-layout-1.0.2" level="project" />
+    <orderEntry type="library" name="AIMA" level="project" />
   </component>
 </module>

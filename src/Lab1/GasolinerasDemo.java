@@ -25,7 +25,7 @@ public class GasolinerasDemo {
 
 
         Gasolineras gas = new Gasolineras(100,1234);
-        CentrosDistribucion dist = new CentrosDistribucion(10,1,1234);
+        CentrosDistribucion dist = new CentrosDistribucion(10,1,123);
 
         List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
@@ -50,13 +50,9 @@ public class GasolinerasDemo {
     private static void HillClimbingSearchAux( Estado board) {
         System.out.println("\nHillClimbing  -->");
         try {
-
             Problem problem=new Problem(board,new GeneradorSucesores (), new GasolineraGoalTest(), new GasolinaHeuristicFunction());
             Search search= new HillClimbingSearch();
             SearchAgent agent = new SearchAgent (problem,search);
-
-
-            System.out.println();
             printActions(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
         } catch (Exception e) {
