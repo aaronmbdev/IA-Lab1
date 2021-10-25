@@ -25,7 +25,7 @@ public class GasolinerasDemo {
 
 
         Gasolineras gas = new Gasolineras(100,1234);
-        CentrosDistribucion dist = new CentrosDistribucion(10,1,123);
+        CentrosDistribucion dist = new CentrosDistribucion(10,1,1234);
 
         List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);

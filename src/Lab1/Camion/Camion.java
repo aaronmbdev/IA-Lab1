@@ -76,10 +76,11 @@ public class Camion {
 
     private void desplazar(final int destX, final int destY) {
         if(estado == EstadoCisterna.MEDIO_LLENO){
+
+            kmDisponibles = kmDisponibles - Utils.computeDistance(coordX, coordY, destX, destY);
             this.coordX = destX;
             this.coordY = destY;
-            kmDisponibles = kmDisponibles - Utils.computeDistance(coordX, coordY, destX, destY);
-            this.viajes--;
+
         }
         else if (estado == EstadoCisterna.VACIO){
             kmDisponibles = kmDisponibles - Utils.computeDistance(coordX, coordY, destX, destY);

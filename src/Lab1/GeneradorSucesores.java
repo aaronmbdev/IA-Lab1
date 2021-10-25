@@ -46,7 +46,6 @@ public class GeneradorSucesores implements SuccessorFunction {
                                 " ViajesRestanses:" + estadoActual.getCamiones().get(j).getViajes()
                         );
 
-
                         retVal.add(new Successor(nuevoEstado.toString(), nuevoEstado));
 
 
