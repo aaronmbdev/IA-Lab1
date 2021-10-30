@@ -21,8 +21,7 @@ public class GeneradorSucesores implements SuccessorFunction {
                 int numeroCamiones = estadoActual.getNumeroCamiones();
 
                 for (int j = 0; j < numeroCamiones; ++j) {
-                    System.out.println();
-                    System.out.println("Peticion: "+ i + " Camion:" + j);
+
                     //se compueba si un camión j puede cumplir la peticion i
 
 
@@ -37,14 +36,14 @@ public class GeneradorSucesores implements SuccessorFunction {
 
                         //System.out.println("petición:" + i + " es hecha por camíon:" + j);
 
-                        System.out.println(
+                        /*System.out.println(
                                 "Coordenadas petición: ("+ p.getCoordX() + ", " + p.getCoordY() +
                                 ") Viaje?: " + estadoActual.getCamiones().get(j).puedoHacerViaje( p.getCoordX(), p.getCoordY() ) +
                                 " Cisterna?:" + estadoActual.getCamiones().get(j).getEstadoCisterna() +
                                 " Mover:"+ estadoActual.getCamiones().get(j).mePuedoMover() +
                                 " km_Disponibles:" +estadoActual.getCamiones().get(j).getKmDisponibles() +
                                 " ViajesRestanses:" + estadoActual.getCamiones().get(j).getViajes()
-                        );
+                        );*/
 
                         retVal.add(new Successor(nuevoEstado.toString(), nuevoEstado));
 
@@ -79,7 +78,7 @@ public class GeneradorSucesores implements SuccessorFunction {
                 }
             }
         }
-        System.out.println("Número de sucecores creados:" + retVal.size());
+        //System.out.println("Número de sucecores creados:" + retVal.size());
         return (retVal);
     }
 

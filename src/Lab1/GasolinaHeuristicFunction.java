@@ -36,7 +36,7 @@ public class GasolinaHeuristicFunction implements HeuristicFunction{
             }
         }
 //        System.out.println( "Ganancias:" + (gananciasPeticiones - perdidaCamiones) + " Peticiones cumplidas:" + contadorPeticionesCumplidas );
-        return (gananciasPeticiones - perdidaCamiones);
+        return -(gananciasPeticiones - perdidaCamiones);
 
     }
 

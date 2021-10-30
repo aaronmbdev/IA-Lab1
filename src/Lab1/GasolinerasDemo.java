@@ -10,10 +10,15 @@ import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
 import aima.search.informed.HillClimbingSearch;
+import aima.search.informed.SimulatedAnnealingSearch;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+
+
+
+
 
 /**
  * This class is intented to be the starting point
@@ -34,13 +39,16 @@ public class GasolinerasDemo {
         System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
 
 
+        //Descomentar el tipo de algoritmo de IA que se quiera usar
+
         HillClimbingSearchAux(inicial);
+
+//        SimulatedAnnealingSearchAux(inicial);
 
         long fin = System.currentTimeMillis();
 
-        System.out.println("inicio: " + inicio);
-        System.out.println("fin: " + fin);
-        System.out.println("tiempo: " + (fin- inicio) + "ms");
+
+        System.out.println("tiempo: " + (fin- inicio) + " ms");
     }
 
 
@@ -62,6 +70,33 @@ public class GasolinerasDemo {
 
 
 
+    private static void SimulatedAnnealingSearchAux(Estado board) {
+        System.out.println("\nSimulated Annealing  -->");
+        try {
+            Problem problem =  new Problem(board, new GeneradorSucesores(), new GasolineraGoalTest(),new GasolinaHeuristicFunction());
+            SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);
+            //search.traceOn();
+            SearchAgent agent = new SearchAgent(problem,search);
+
+            System.out.println();
+//            printActions(agent.getActions());
+            printInstrumentation(agent.getInstrumentation());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     private static void printInstrumentation(Properties properties) {
         Iterator keys = properties.keySet().iterator();
         while (keys.hasNext()) {
@@ -78,7 +113,4 @@ public class GasolinerasDemo {
             System.out.println(action);
         }
     }
-
-
-
 }
