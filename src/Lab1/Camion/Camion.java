@@ -3,7 +3,7 @@ package Lab1.Camion;
 import Lab1.Utils;
 import Lab1.enums.EstadoCisterna;
 
-public class Camion {
+public class Camion implements Cloneable {
 //    private double balance;
     private int coordX,coordY;
     private EstadoCisterna estado;
@@ -105,18 +105,14 @@ public class Camion {
 
     public Camion getCopy(){
         Camion c = new Camion();
-
         c.coordBaseX = this.coordBaseX;
         c.coordX = this.coordX;
         c.coordBaseY = this.coordBaseY;
         c.coordY = this.coordY;
-
         c.estado = this.estado;
-
         c.viajes = this.viajes;
         c.kmDisponibles = this.kmDisponibles;
-        c.GAS_PRICE = this.GAS_PRICE;
-
+        c.GAS_PRICE = GAS_PRICE;
         return c;
 
 

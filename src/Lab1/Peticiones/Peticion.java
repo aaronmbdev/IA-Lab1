@@ -49,15 +49,12 @@ public class Peticion {
         }
     }
 
-
     public Peticion getCopy(){
         Peticion p = new Peticion();
-
         p.diasPendiente = this.diasPendiente;
         p.coordX = this.coordX;
         p.coordY = this.coordY;
         p.cumplido = this.cumplido;
-
         return p;
     }
 }

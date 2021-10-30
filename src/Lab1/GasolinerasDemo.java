@@ -4,6 +4,8 @@ import IA.Gasolina.CentrosDistribucion;
 import IA.Gasolina.Gasolineras;
 import Lab1.Camion.Camion;
 import Lab1.Camion.CamionFactory;
+import Lab1.Estado.Estado;
+import Lab1.Estado.EstadoFactory;
 import Lab1.Peticiones.Peticion;
 import Lab1.Peticiones.PeticionFactory;
 import aima.search.framework.Problem;
@@ -34,12 +36,9 @@ public class GasolinerasDemo {
 
         List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
-        Estado inicial = new Estado(camiones,peticiones);
+        Estado inicial = EstadoFactory.createDefaultState(camiones,peticiones);
 
         System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
-
-
-        //Descomentar el tipo de algoritmo de IA que se quiera usar
 
         HillClimbingSearchAux(inicial);
 
@@ -85,8 +84,6 @@ public class GasolinerasDemo {
             e.printStackTrace();
         }
     }
-
-
 
 
 
