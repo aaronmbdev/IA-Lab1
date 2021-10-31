@@ -71,7 +71,7 @@ public abstract class Estado {
                         Estado nuevoEstado = EstadoFactory.createStateFromPrevious(this);
                         nuevoEstado.getCamion(cEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
                         nuevoEstado.computeBalance();
-                        retVal.add(new Successor(getActionFromState(cEntry.getKey(),nuevoEstado.getCamion(cEntry.getKey()),p),nuevoEstado));
+                        retVal.add(new Successor(getActionFromState(cEntry.getKey(),nuevoEstado.getCamion(cEntry.getKey()),p,this.balance),nuevoEstado));
                     }
                 }
             }
@@ -80,8 +80,12 @@ public abstract class Estado {
         return (retVal);
     }
 
-    protected String getActionFromState(Integer i,Camion c, Peticion p) {
-        return "Camion " + i + " viaja a repostar ["+p.getCoordX()+","+p.getCoordY()+"] y tiene un beneficio de "+c.calcularBeneficio();
+    protected double getBalance() {
+        return this.balance;
+    }
+
+    protected String getActionFromState(Integer i,Camion c, Peticion p, double balance) {
+        return "Camion " + i + " viaja a repostar ["+p.getCoordX()+","+p.getCoordY()+"] y tiene un beneficio de "+c.calcularBeneficio() + " - Balance: " + balance;
     }
 
     public double getHeuristicValue() {

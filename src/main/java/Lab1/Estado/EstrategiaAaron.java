@@ -28,7 +28,10 @@ public class EstrategiaAaron extends Estado{
                 nuevoEstado.getCamiones().get(camionEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
                 p.setCumplido(true);
                 nuevoEstado.computeBalance();
-                retVal.add(new Successor(getActionFromState(camionEntry.getKey(),nuevoEstado.getCamiones().get(camionEntry.getKey()), nuevoEstado.getPeticiones().get(index)),nuevoEstado));
+                retVal.add(new Successor(getActionFromState(camionEntry.getKey(),
+                        nuevoEstado.getCamiones().get(camionEntry.getKey()),
+                        nuevoEstado.getPeticiones().get(index),
+                        nuevoEstado.getBalance()),nuevoEstado));
             }
         }
         return retVal;
