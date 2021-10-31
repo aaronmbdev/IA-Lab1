@@ -36,6 +36,14 @@ public class Camion  {
         return c;
     }
 
+    public int getCoordX() {
+        return coordX;
+    }
+
+    public int getCoordY() {
+        return coordY;
+    }
+
     public double calcularBeneficio() {
         double gasto = calcularGastos();
         return beneficioNeto - gasto;

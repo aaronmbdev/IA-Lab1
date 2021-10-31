@@ -12,6 +12,14 @@ public abstract class Estado {
     private Map<Integer,Peticion> peticiones;
     private double balance;
 
+    protected Map<Integer, Camion> getCamiones() {
+        return camiones;
+    }
+
+    protected Map<Integer, Peticion> getPeticiones() {
+        return peticiones;
+    }
+
     protected Estado(final Map<Integer,Camion> camiones, final Map<Integer,Peticion> peticiones) {
         this.camiones = camiones;
         this.peticiones = peticiones;
@@ -30,7 +38,7 @@ public abstract class Estado {
         peticiones = p;
     }
 
-    private void computeBalance() {
+    protected void computeBalance() {
         for(Map.Entry<Integer,Camion> cEntry:camiones.entrySet()) {
             balance = balance + cEntry.getValue().calcularBeneficio();
         }
@@ -72,7 +80,7 @@ public abstract class Estado {
         return (retVal);
     }
 
-    private String getActionFromState(Integer i,Camion c, Peticion p) {
+    protected String getActionFromState(Integer i,Camion c, Peticion p) {
         return "Camion " + i + " viaja a repostar ["+p.getCoordX()+","+p.getCoordY()+"] y tiene un beneficio de "+c.calcularBeneficio();
     }
 
