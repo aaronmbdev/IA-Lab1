@@ -31,9 +31,10 @@ public class GasolinerasDemo {
         Map<Integer,Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
         Estado inicial = EstadoFactory.createStateDMinus(camiones,peticiones);
-        HillClimbingSearchAux(inicial);
 
-//        SimulatedAnnealingSearchAux(inicial);
+//        HillClimbingSearchAux(inicial);
+
+        SimulatedAnnealingSearchAux(inicial);
 
         long fin = System.currentTimeMillis();
 
@@ -51,7 +52,7 @@ public class GasolinerasDemo {
             Problem problem=new Problem(board,new GeneradorSucesores (), new GasolineraGoalTest(), new GasolinaHeuristicFunction());
             Search search= new HillClimbingSearch();
             SearchAgent agent = new SearchAgent (problem,search);
-            printActions(agent.getActions());
+            //printActions(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,7 +70,7 @@ public class GasolinerasDemo {
             SearchAgent agent = new SearchAgent(problem,search);
 
             System.out.println();
-//            printActions(agent.getActions());
+            printActions(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,7 +98,7 @@ public class GasolinerasDemo {
 
     private static void printActions(List actions) {
         for (int i = 0; i < actions.size(); i++) {
-            String action = (String) actions.get(i);
+            String action = actions.get(i).toString();
             System.out.println(action);
         }
     }
