@@ -52,22 +52,19 @@ public class Camion  {
 
     public boolean puedoHacerViaje(final int x, final int y) {
         int distanciaDestino = Utils.computeDistance(coordX,coordY,x,y);
+        int distanciaDestinoABase = Utils.computeDistance(x,y,coordBaseX,coordBaseY);
 
         if (estado == EstadoCisterna.LLENO) {
-            return  viajes >= 1 && this.kmDisponibles - (distanciaDestino*2) >= 0 ;
+            return  viajes >= 1 && this.kmDisponibles - (distanciaDestino) >= 0 ;
         }
         else if (estado == EstadoCisterna.MEDIO_LLENO){
-            return (viajes >= 1 && (this.kmDisponibles - distanciaDestino - Utils.computeDistance(x,y,coordBaseX,coordBaseY) >= 0));
+            return (viajes >= 1 && (this.kmDisponibles - distanciaDestino - distanciaDestinoABase >= 0));
         }
         else{
             System.out.println("ERROR");
             return false;
         }
 
-    }
-    
-    public int getKmDisponibles() {
-        return kmDisponibles;
     }
 
 
@@ -80,11 +77,9 @@ public class Camion  {
 
     private void desplazar(final int destX, final int destY) {
         if(estado == EstadoCisterna.MEDIO_LLENO){
-
             kmDisponibles = kmDisponibles - Utils.computeDistance(coordX, coordY, destX, destY);
             this.coordX = destX;
             this.coordY = destY;
-
         }
         else if (estado == EstadoCisterna.VACIO){
             kmDisponibles = kmDisponibles - Utils.computeDistance(coordX, coordY, destX, destY);

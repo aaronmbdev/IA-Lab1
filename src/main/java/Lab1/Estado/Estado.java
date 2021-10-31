@@ -10,7 +10,6 @@ public abstract class Estado {
 
     private Map<Integer,Camion> camiones;
     private Map<Integer,Peticion> peticiones;
-    private boolean inicial = false;
     private double balance;
 
     protected Estado(final Map<Integer,Camion> camiones, final Map<Integer,Peticion> peticiones) {
@@ -29,11 +28,6 @@ public abstract class Estado {
             p.put(j,e.peticiones.get(j).getCopy());
         }
         peticiones = p;
-        computeBalance();
-    }
-
-    public void setInicial(final boolean ini) {
-        this.inicial = ini;
     }
 
     private void computeBalance() {
@@ -68,6 +62,7 @@ public abstract class Estado {
                         p.setCumplido(true);
                         Estado nuevoEstado = EstadoFactory.createStateFromPrevious(this);
                         nuevoEstado.getCamion(cEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
+                        nuevoEstado.computeBalance();
                         retVal.add(new Successor(getActionFromState(cEntry.getKey(),nuevoEstado.getCamion(cEntry.getKey()),p),nuevoEstado));
                     }
                 }
@@ -82,14 +77,11 @@ public abstract class Estado {
     }
 
     public double getHeuristicValue() {
-        if(inicial) {
-            return Integer.MAX_VALUE;
-        } else {
-            double sum = 0.0;
-            for(Map.Entry<Integer,Camion> entry:camiones.entrySet()) {
-                sum = sum + entry.getValue().calcularGastos();
-            }
-            return sum;
+        double ganancias = 0.0;
+        for(Map.Entry<Integer,Camion> camionEntry:camiones.entrySet()) {
+            ganancias = ganancias + camionEntry.getValue().calcularBeneficio();
         }
+        ganancias = -ganancias;
+        return ganancias;
     }
 }
