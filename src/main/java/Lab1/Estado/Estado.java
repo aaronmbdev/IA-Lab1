@@ -20,6 +20,10 @@ public abstract class Estado {
         return peticiones;
     }
 
+    protected void setPeticiones(Map<Integer,Peticion> map) {
+        this.peticiones = map;
+    }
+
     protected Estado(final Map<Integer,Camion> camiones, final Map<Integer,Peticion> peticiones) {
         this.camiones = camiones;
         this.peticiones = peticiones;

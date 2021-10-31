@@ -30,7 +30,7 @@ public class GasolinerasDemo {
         CentrosDistribucion dist = new CentrosDistribucion(10,1,1234);
         Map<Integer,Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
-        Estado inicial = EstadoFactory.createAaronState(camiones,peticiones);
+        Estado inicial = EstadoFactory.createStateDPlus(camiones,peticiones);
         HillClimbingSearchAux(inicial);
 
 //        SimulatedAnnealingSearchAux(inicial);

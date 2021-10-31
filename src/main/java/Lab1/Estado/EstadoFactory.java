@@ -14,11 +14,19 @@ public class EstadoFactory {
     }
 
 
-    public static EstrategiaDistancia createAaronState(Map<Integer,Camion> camiones, Map<Integer,Peticion> peticiones) {
+    public static EstrategiaDistancia createStateD(Map<Integer,Camion> camiones, Map<Integer,Peticion> peticiones) {
         return new EstrategiaDistancia(camiones,peticiones);
     }
 
     public static EstrategiaDistancia createStateFromPrevious(EstrategiaDistancia prevState) {
         return new EstrategiaDistancia(prevState);
+    }
+
+    public static EstrategiaDistanciaPlus createStateDPlus(Map<Integer,Camion> camiones, Map<Integer,Peticion> peticiones) {
+        return new EstrategiaDistanciaPlus(camiones,peticiones);
+    }
+
+    public static EstrategiaDistanciaPlus createStateFromPrevious(EstrategiaDistanciaPlus prevState) {
+        return new EstrategiaDistanciaPlus(prevState);
     }
 }
