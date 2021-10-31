@@ -25,17 +25,12 @@ public class GasolinerasDemo {
     public static void main(String[] args){
 
         long inicio = System.currentTimeMillis();
-
-
         Gasolineras gas = new Gasolineras(100,1234);
         CentrosDistribucion dist = new CentrosDistribucion(10,1,1234);
-
         List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
         Estado inicial = EstadoFactory.createDefaultState(camiones,peticiones);
-
         System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
-
         HillClimbingSearchAux(inicial);
 
 //        SimulatedAnnealingSearchAux(inicial);
