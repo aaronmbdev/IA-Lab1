@@ -32,6 +32,7 @@ public class Camion  {
         c.estado = this.estado;
         c.viajes = this.viajes;
         c.kmDisponibles = this.kmDisponibles;
+        c.beneficioNeto = this.beneficioNeto;
         return c;
     }
 
