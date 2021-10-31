@@ -4,17 +4,19 @@ import IA.Gasolina.Gasolinera;
 import IA.Gasolina.Gasolineras;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class PeticionFactory {
 
     public static Map<Integer,Peticion> fromGasolineras(final Gasolineras gasolineras) {
         Map<Integer,Peticion> peticiones = new HashMap<>();
+        int latest = peticiones.size();
         for(Gasolinera gas:gasolineras){
             Map<Integer,Peticion> nuevasPeticiones = getPeticionesFromGasolinera(gas);
-            peticiones.putAll(nuevasPeticiones);
+            for(Map.Entry<Integer,Peticion> entry:nuevasPeticiones.entrySet()) {
+                peticiones.put(latest,entry.getValue());
+                latest++;
+            }
         }
         return peticiones;
     }
