@@ -31,6 +31,7 @@ public class GasolinerasDemo {
         Map<Integer,Camion> camiones = CamionFactory.fromDistributionCenter(dist);
         Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
         Estado inicial = EstadoFactory.createDefaultState(camiones,peticiones);
+        inicial.setInicial(true);
         HillClimbingSearchAux(inicial);
 
 //        SimulatedAnnealingSearchAux(inicial);

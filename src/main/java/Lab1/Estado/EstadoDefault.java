@@ -2,8 +2,6 @@ package Lab1.Estado;
 
 import Lab1.Camion.Camion;
 import Lab1.Peticiones.Peticion;
-
-import java.util.List;
 import java.util.Map;
 
 public class EstadoDefault extends Estado{

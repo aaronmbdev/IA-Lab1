@@ -11,11 +11,11 @@ public abstract class Estado {
     private Map<Integer,Camion> camiones;
     private Map<Integer,Peticion> peticiones;
     private boolean inicial = false;
+    private double balance;
 
     protected Estado(final Map<Integer,Camion> camiones, final Map<Integer,Peticion> peticiones) {
         this.camiones = camiones;
         this.peticiones = peticiones;
-        this.inicial = true;
     }
 
     public Estado(Estado e){
@@ -29,6 +29,17 @@ public abstract class Estado {
             p.put(j,e.peticiones.get(j).getCopy());
         }
         peticiones = p;
+        computeBalance();
+    }
+
+    public void setInicial(final boolean ini) {
+        this.inicial = ini;
+    }
+
+    private void computeBalance() {
+        for(Map.Entry<Integer,Camion> cEntry:camiones.entrySet()) {
+            balance = balance + cEntry.getValue().calcularBeneficio();
+        }
     }
 
     private Camion getCamion(final Integer i) {
@@ -57,7 +68,7 @@ public abstract class Estado {
                         p.setCumplido(true);
                         Estado nuevoEstado = EstadoFactory.createStateFromPrevious(this);
                         nuevoEstado.getCamion(cEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
-                        retVal.add(new Successor("atenderPeticion",nuevoEstado));
+                        retVal.add(new Successor(getActionFromState(cEntry.getKey(),nuevoEstado.getCamion(cEntry.getKey()),p),nuevoEstado));
                     }
                 }
             }
@@ -66,15 +77,20 @@ public abstract class Estado {
         return (retVal);
     }
 
+    private String getActionFromState(Integer i,Camion c, Peticion p) {
+        return "Camion " + i + " viaja a repostar ["+p.getCoordX()+","+p.getCoordY()+"] y tiene un beneficio de "+c.calcularBeneficio();
+    }
+
     public double getHeuristicValue() {
         if(inicial) {
-            return 10000;
+            return Integer.MAX_VALUE;
         } else {
             double sum = 0.0;
             for(Map.Entry<Integer,Camion> entry:camiones.entrySet()) {
                 sum = sum + entry.getValue().calcularGastos();
             }
-            return sum;
+            if(sum != 0) return sum;
+            else return Integer.MAX_VALUE;
         }
     }
 }
