@@ -16,6 +16,7 @@ import aima.search.informed.SimulatedAnnealingSearch;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -27,10 +28,9 @@ public class GasolinerasDemo {
         long inicio = System.currentTimeMillis();
         Gasolineras gas = new Gasolineras(100,1234);
         CentrosDistribucion dist = new CentrosDistribucion(10,1,1234);
-        List<Camion> camiones = CamionFactory.fromDistributionCenter(dist);
-        List<Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
+        Map<Integer,Camion> camiones = CamionFactory.fromDistributionCenter(dist);
+        Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
         Estado inicial = EstadoFactory.createDefaultState(camiones,peticiones);
-        System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
         HillClimbingSearchAux(inicial);
 
 //        SimulatedAnnealingSearchAux(inicial);

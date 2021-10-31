@@ -99,7 +99,7 @@ public class Camion  {
         else System.out.println("Camíon LLENO ERROR");
     }
 
-    private double calcularGastos() {
+    public double calcularGastos() {
         return (640-kmDisponibles) * 2;
     }
 

@@ -4,83 +4,76 @@ import Lab1.Camion.Camion;
 import Lab1.Peticiones.Peticion;
 import aima.search.framework.Successor;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public abstract class Estado {
 
-    private List<Camion> camiones;
-    private List<Peticion> peticiones;
+    private Map<Integer,Camion> camiones;
+    private Map<Integer,Peticion> peticiones;
+    private boolean inicial = false;
 
-    protected Estado(List<Camion> camiones, List<Peticion> peticiones) {
+    protected Estado(final Map<Integer,Camion> camiones, final Map<Integer,Peticion> peticiones) {
         this.camiones = camiones;
         this.peticiones = peticiones;
+        this.inicial = true;
     }
 
     public Estado(Estado e){
-        List<Camion> c =  new LinkedList<>();
-        for (int i = 0; i < e.getNumeroCamiones(); i++){
-
-            c.add(e.getCamiones().get(i).getCopy());
+        Map<Integer,Camion> c =  new HashMap<>();
+        for (int i = 0; i < e.camiones.size(); i++){
+            c.put(i,e.camiones.get(i).getCopy());
         }
         camiones = c;
-
-        List<Peticion> p = new LinkedList<>();
-        for (int j = 0; j < e.getNumeroPeticiones(); j++){
-            p.add(e.getPeticiones().get(j).getCopy());
+        Map<Integer,Peticion> p = new HashMap<>();
+        for (int j = 0; j < e.peticiones.size(); j++){
+            p.put(j,e.peticiones.get(j).getCopy());
         }
         peticiones = p;
-
     }
 
-    public List<Camion> getCamiones() {
-        return camiones;
+    private Camion getCamion(final Integer i) {
+        return camiones.get(i);
     }
 
-    public List<Peticion> getPeticiones() {
-        return peticiones;
-    }
 
     public boolean isGoalState() {
-        for(Camion c: camiones){
-            if (c.mePuedoMover()) return false;
+        for(Map.Entry<Integer,Camion> entry: camiones.entrySet()) {
+            if(entry.getValue().mePuedoMover()) return false;
         }
         return true;
 
     }
-    public int getNumeroPeticiones(){
-        return peticiones.size();
-    }
-
-    public int getNumeroCamiones(){
-        return camiones.size();
-    }
 
     public List getSuccessors() {
         ArrayList retVal = new ArrayList();
-        int nPeticiones = getNumeroPeticiones();
-        for (int i = 0; i < nPeticiones; ++i) {
-
-            Peticion p = getPeticiones().get(i);
-
-            if (!p.isCumplido()){
-                int numeroCamiones = getNumeroCamiones();
-
-                for (int j = 0; j < numeroCamiones; ++j) {
-                    if (getCamiones().get(j).puedoHacerViaje( p.getCoordX(), p.getCoordY() )){
+        for(Map.Entry<Integer,Peticion> pEntry: peticiones.entrySet()) {
+            boolean camionEncontrado = false;
+            if(!pEntry.getValue().isCumplido()) {
+                Peticion p = pEntry.getValue();
+                for(Map.Entry<Integer,Camion> cEntry: camiones.entrySet()) {
+                    if(camionEncontrado) break;
+                    if(cEntry.getValue().puedoHacerViaje(p.getCoordX(),p.getCoordY())) {
+                        camionEncontrado = true;
+                        p.setCumplido(true);
                         Estado nuevoEstado = EstadoFactory.createStateFromPrevious(this);
-                        Peticion peticion = nuevoEstado.getPeticiones().get(i);
-                        nuevoEstado.getCamiones().get(j).atenderPeticion(
-                                peticion.getCoordX(),peticion.getCoordY(),peticion.getDiasPendiente());
-
-                        nuevoEstado.getPeticiones().get(i).setCumplido(true);
-
-                        retVal.add(new Successor(nuevoEstado.toString(), nuevoEstado));
+                        nuevoEstado.getCamion(cEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
+                        retVal.add(new Successor("atenderPeticion",nuevoEstado));
                     }
                 }
             }
         }
         return (retVal);
+    }
+
+    public double getHeuristicValue() {
+        if(inicial) {
+            return 10000;
+        } else {
+            double sum = 0.0;
+            for(Map.Entry<Integer,Camion> entry:camiones.entrySet()) {
+                sum = sum + entry.getValue().calcularGastos();
+            }
+            return sum;
+        }
     }
 }

@@ -42,13 +42,6 @@ public class Peticion {
         return cumplido;
     }
 
-    public double getGananciasActuales(){
-        if (diasPendiente == 0) return 1000;
-        else{
-            return 1000 * ((100 - Math.pow(2, diasPendiente) ) / 100);
-        }
-    }
-
     public Peticion getCopy(){
         Peticion p = new Peticion();
         p.diasPendiente = this.diasPendiente;
