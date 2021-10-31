@@ -9,7 +9,7 @@ public class Camion  {
     private int coordBaseX,coordBaseY;
     private int viajes = 5;
     private int kmDisponibles = 640;
-    private double beneficioNeto = 0;
+    private double beneficioBruto = 0;
     private static double GAS_PRICE = 1000.00;
 
     public Camion(final int originX, final int originY) {
@@ -32,7 +32,7 @@ public class Camion  {
         c.estado = this.estado;
         c.viajes = this.viajes;
         c.kmDisponibles = this.kmDisponibles;
-        c.beneficioNeto = this.beneficioNeto;
+        c.beneficioBruto = this.beneficioBruto;
         return c;
     }
 
@@ -46,13 +46,13 @@ public class Camion  {
 
     public double calcularBeneficio() {
         double gasto = calcularGastos();
-        return beneficioNeto - gasto;
+        return beneficioBruto - gasto;
     }
 
     public void atenderPeticion(final int x, final int y, final int dias) {
         repostarGasolinera();
         desplazar(x,y);
-        beneficioNeto = beneficioNeto + calcularGananciasPeticion(dias);
+        beneficioBruto = beneficioBruto + calcularGananciasPeticion(dias);
     }
 
     public boolean mePuedoMover() {
