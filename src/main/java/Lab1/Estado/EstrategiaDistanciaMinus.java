@@ -6,14 +6,13 @@ import Lab1.Utils;
 import aima.search.framework.Successor;
 
 import java.util.*;
-import java.util.Map.Entry;
 
-public class EstrategiaDistanciaPlus extends EstrategiaDistancia{
-    protected EstrategiaDistanciaPlus(Map<Integer, Camion> camiones, Map<Integer, Peticion> peticiones) {
+public class EstrategiaDistanciaMinus extends EstrategiaDistancia{
+    protected EstrategiaDistanciaMinus(Map<Integer, Camion> camiones, Map<Integer, Peticion> peticiones) {
         super(camiones, peticiones);
     }
 
-    public EstrategiaDistanciaPlus(Estado e) {
+    public EstrategiaDistanciaMinus(Estado e) {
         super(e);
     }
 
@@ -53,15 +52,13 @@ public class EstrategiaDistanciaPlus extends EstrategiaDistancia{
     }
 
     private void ordenarPeticiones() {
-        Comparator<Entry<Integer,Peticion>> valueComparator = Comparator.comparingInt(t -> t.getValue().getDiasPendiente());
-        List<Entry<Integer, Peticion>> listOfEntries = new ArrayList<>(getPeticiones().entrySet());
+        Comparator<Map.Entry<Integer,Peticion>> valueComparator = (integerPeticionEntry, t1) -> t1.getValue().getDiasPendiente() - integerPeticionEntry.getValue().getDiasPendiente();
+        List<Map.Entry<Integer, Peticion>> listOfEntries = new ArrayList<>(getPeticiones().entrySet());
         listOfEntries.sort(valueComparator);
         LinkedHashMap<Integer,Peticion> sorted = new LinkedHashMap<>(listOfEntries.size());
-        for(Entry<Integer,Peticion> entry:listOfEntries) {
+        for(Map.Entry<Integer,Peticion> entry:listOfEntries) {
             sorted.put(entry.getKey(),entry.getValue());
         }
         this.setPeticiones(sorted);
     }
-
-
 }

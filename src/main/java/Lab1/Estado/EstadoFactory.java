@@ -29,4 +29,12 @@ public class EstadoFactory {
     public static EstrategiaDistanciaPlus createStateFromPrevious(EstrategiaDistanciaPlus prevState) {
         return new EstrategiaDistanciaPlus(prevState);
     }
+
+    public static EstrategiaDistanciaMinus createStateDMinus(Map<Integer,Camion> camiones, Map<Integer,Peticion> peticiones) {
+        return new EstrategiaDistanciaMinus(camiones,peticiones);
+    }
+
+    public static EstrategiaDistanciaMinus createStateFromPrevious(EstrategiaDistanciaMinus prevState) {
+        return new EstrategiaDistanciaMinus(prevState);
+    }
 }

@@ -35,7 +35,6 @@ public class EstrategiaDistancia extends Estado{
             }
         }
         return retVal;
-
     }
 
     private Integer laMejorPeticion(Camion c) {
