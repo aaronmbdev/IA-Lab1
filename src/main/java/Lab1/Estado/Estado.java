@@ -89,8 +89,7 @@ public abstract class Estado {
             for(Map.Entry<Integer,Camion> entry:camiones.entrySet()) {
                 sum = sum + entry.getValue().calcularGastos();
             }
-            if(sum != 0) return sum;
-            else return Integer.MAX_VALUE;
+            return sum;
         }
     }
 }
