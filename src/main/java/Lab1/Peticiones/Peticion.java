@@ -1,7 +1,5 @@
 package Lab1.Peticiones;
 
-import java.lang.Math;
-
 public class Peticion {
     private int diasPendiente, coordX, coordY;
     private boolean cumplido;
