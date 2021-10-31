@@ -18,10 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-
-
-
-
 /**
  * This class is intented to be the starting point
  */

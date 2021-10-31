@@ -6,11 +6,13 @@
 
     <groupId>groupId</groupId>
     <artifactId>IAGasolineras</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <main.basedir>${project.basedir}</main.basedir>
+        <mainClass>Lab1.GasolinerasDemo</mainClass>
     </properties>
 
     <dependencies>
@@ -19,14 +21,14 @@
             <artifactId>aima</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/AIMA.jar</systemPath>
+            <systemPath>${pom.basedir}/libs/AIMA.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.fib.upc</groupId>
             <artifactId>Gasolina</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/Gasolina.jar</systemPath>
+            <systemPath>${pom.basedir}/libs/Gasolina.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -39,9 +41,23 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Lab1.GasolinerasDemo</mainClass>
+                            <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
                 </configuration>
             </plugin>
         </plugins>
