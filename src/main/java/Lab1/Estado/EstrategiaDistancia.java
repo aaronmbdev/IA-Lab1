@@ -7,13 +7,13 @@ import aima.search.framework.Successor;
 
 import java.util.*;
 
-public class EstrategiaAaron extends Estado{
+public class EstrategiaDistancia extends Estado{
 
-    protected EstrategiaAaron(Map<Integer, Camion> camiones, Map<Integer, Peticion> peticiones) {
+    protected EstrategiaDistancia(Map<Integer, Camion> camiones, Map<Integer, Peticion> peticiones) {
         super(camiones, peticiones);
     }
 
-    public EstrategiaAaron(Estado e) {
+    public EstrategiaDistancia(Estado e) {
         super(e);
     }
 
@@ -23,7 +23,7 @@ public class EstrategiaAaron extends Estado{
         for(Map.Entry<Integer,Camion> camionEntry: this.getCamiones().entrySet()) {
             int index = laMejorPeticion(camionEntry.getValue());
             if(index != -1) {
-                EstrategiaAaron nuevoEstado = EstadoFactory.createStateFromPrevious(this);
+                EstrategiaDistancia nuevoEstado = EstadoFactory.createStateFromPrevious(this);
                 Peticion p = nuevoEstado.getPeticiones().get(index);
                 nuevoEstado.getCamiones().get(camionEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
                 p.setCumplido(true);

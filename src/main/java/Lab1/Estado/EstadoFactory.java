@@ -2,7 +2,7 @@ package Lab1.Estado;
 
 import Lab1.Camion.Camion;
 import Lab1.Peticiones.Peticion;
-import java.util.List;
+
 import java.util.Map;
 
 public class EstadoFactory {
@@ -14,11 +14,11 @@ public class EstadoFactory {
     }
 
 
-    public static EstrategiaAaron createAaronState(Map<Integer,Camion> camiones, Map<Integer,Peticion> peticiones) {
-        return new EstrategiaAaron(camiones,peticiones);
+    public static EstrategiaDistancia createAaronState(Map<Integer,Camion> camiones, Map<Integer,Peticion> peticiones) {
+        return new EstrategiaDistancia(camiones,peticiones);
     }
 
-    public static EstrategiaAaron createStateFromPrevious(EstrategiaAaron prevState) {
-        return new EstrategiaAaron(prevState);
+    public static EstrategiaDistancia createStateFromPrevious(EstrategiaDistancia prevState) {
+        return new EstrategiaDistancia(prevState);
     }
 }
