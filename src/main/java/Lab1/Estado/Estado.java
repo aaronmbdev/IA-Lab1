@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Estado implements Cloneable {
+public abstract class Estado {
 
     private List<Camion> camiones;
     private List<Peticion> peticiones;
@@ -70,9 +70,9 @@ public abstract class Estado implements Cloneable {
                 for (int j = 0; j < numeroCamiones; ++j) {
                     if (getCamiones().get(j).puedoHacerViaje( p.getCoordX(), p.getCoordY() )){
                         Estado nuevoEstado = EstadoFactory.createStateFromPrevious(this);
-                        nuevoEstado.getCamiones().get(j).llenarGasolinera(
-                                nuevoEstado.getPeticiones().get(i).getCoordX(),
-                                nuevoEstado.getPeticiones().get(i).getCoordY() );
+                        Peticion peticion = nuevoEstado.getPeticiones().get(i);
+                        nuevoEstado.getCamiones().get(j).atenderPeticion(
+                                peticion.getCoordX(),peticion.getCoordY(),peticion.getDiasPendiente());
 
                         nuevoEstado.getPeticiones().get(i).setCumplido(true);
 

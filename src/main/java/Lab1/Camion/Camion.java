@@ -3,44 +3,48 @@ package Lab1.Camion;
 import Lab1.Utils;
 import Lab1.enums.EstadoCisterna;
 
-public class Camion implements Cloneable {
-//    private double balance;
+public class Camion  {
     private int coordX,coordY;
-    private EstadoCisterna estado;
-    private int coordBaseX,coordBaseY, viajes, kmDisponibles;
+    private EstadoCisterna estado = EstadoCisterna.LLENO;
+    private int coordBaseX,coordBaseY;
+    private int viajes = 5;
+    private int kmDisponibles = 640;
+    private double beneficioNeto = 0;
     private static double GAS_PRICE = 1000.00;
-
-    private Camion() {
-        this.coordBaseX = -1;
-        this.coordX = -1;
-        this.coordBaseY = -1;
-        this.coordY = -1;
-        this.estado = EstadoCisterna.LLENO;
-//        this.balance = 0;
-        this.viajes = 5;
-        this.kmDisponibles = 640;
-    }
 
     public Camion(final int originX, final int originY) {
         this.coordBaseX = originX;
         this.coordX = originX;
         this.coordBaseY = originY;
         this.coordY = originY;
-        this.estado = EstadoCisterna.LLENO;
-//        this.balance = 0;
-        this.viajes = 5;
-        this.kmDisponibles = 640;
     }
 
-    /**
-     * Método que descarga la gasolina en gasolinera.
-     */
-    public void llenarGasolinera(final int x, final int y) {
+    public Camion() {
+
+    }
+
+    public Camion getCopy(){
+        Camion c = new Camion();
+        c.coordBaseX = this.coordBaseX;
+        c.coordX = this.coordX;
+        c.coordBaseY = this.coordBaseY;
+        c.coordY = this.coordY;
+        c.estado = this.estado;
+        c.viajes = this.viajes;
+        c.kmDisponibles = this.kmDisponibles;
+        return c;
+    }
+
+    public double calcularBeneficio() {
+        double gasto = calcularGastos();
+        return beneficioNeto - gasto;
+    }
+
+    public void atenderPeticion(final int x, final int y, final int dias) {
         repostarGasolinera();
         desplazar(x,y);
+        beneficioNeto = beneficioNeto + calcularGananciasPeticion(dias);
     }
-
-
 
     public boolean mePuedoMover() {
         return  ((kmDisponibles > 0) && (viajes >= 1));
@@ -95,26 +99,17 @@ public class Camion implements Cloneable {
         else System.out.println("Camíon LLENO ERROR");
     }
 
-    public EstadoCisterna getEstadoCisterna() {
-        return estado;
+    private double calcularGastos() {
+        return (640-kmDisponibles) * 2;
     }
 
-    public int getViajes() {
-        return viajes;
-    }
-
-    public Camion getCopy(){
-        Camion c = new Camion();
-        c.coordBaseX = this.coordBaseX;
-        c.coordX = this.coordX;
-        c.coordBaseY = this.coordBaseY;
-        c.coordY = this.coordY;
-        c.estado = this.estado;
-        c.viajes = this.viajes;
-        c.kmDisponibles = this.kmDisponibles;
-        c.GAS_PRICE = GAS_PRICE;
-        return c;
-
-
+    private double calcularGananciasPeticion(final int dias) {
+        double mult = 1.02;
+        if(dias != 0) {
+            double coef = (int) Math.pow(2,dias);
+            double perc = 100 - coef;
+            mult = perc / 100;
+        }
+        return GAS_PRICE * mult;
     }
 }
