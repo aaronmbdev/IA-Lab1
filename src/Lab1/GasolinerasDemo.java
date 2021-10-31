@@ -40,14 +40,17 @@ public class GasolinerasDemo {
 
         System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
 
-        HillClimbingSearchAux(inicial);
+//        HillClimbingSearchAux(inicial);
 
-//        SimulatedAnnealingSearchAux(inicial);
+        SimulatedAnnealingSearchAux(inicial);
 
         long fin = System.currentTimeMillis();
 
 
         System.out.println("tiempo: " + (fin- inicio) + " ms");
+
+        System.out.println("Camiones:" + inicial.getNumeroCamiones() + " Peticiones:" + inicial.getNumeroPeticiones());
+
     }
 
 
@@ -72,9 +75,10 @@ public class GasolinerasDemo {
     private static void SimulatedAnnealingSearchAux(Estado board) {
         System.out.println("\nSimulated Annealing  -->");
         try {
-            Problem problem =  new Problem(board, new GeneradorSucesores(), new GasolineraGoalTest(),new GasolinaHeuristicFunction());
+            Problem problem =  new Problem(board, new GeneradorSucesoresSA(), new GasolineraGoalTest(),new GasolinaHeuristicFunction());
             SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);
-            //search.traceOn();
+//            SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(50,10,5,0.001);
+//            search.traceOn();
             SearchAgent agent = new SearchAgent(problem,search);
 
             System.out.println();

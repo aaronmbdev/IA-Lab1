@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static Lab1.Utils.getRandNumber;
+
 public abstract class Estado implements Cloneable {
 
     private List<Camion> camiones;
@@ -81,6 +83,48 @@ public abstract class Estado implements Cloneable {
                 }
             }
         }
+        return (retVal);
+    }
+
+
+    public List getSuccessorsSA(){
+        ArrayList retVal = new ArrayList();
+        Estado nuevoEstado = EstadoFactory.createStateFromPrevious(this);
+        boolean modificado = false;
+
+
+
+
+
+
+        while(! modificado){
+
+            int x = getRandNumber(this.getNumeroCamiones() -1);
+            boolean peticionNoEncontrada = true;
+
+            int y;
+            Peticion p;
+
+            do{
+                y =getRandNumber(this.getNumeroPeticiones() -1);
+                p = getPeticiones().get(y);
+                peticionNoEncontrada = p.isCumplido();
+            } while(peticionNoEncontrada );
+
+            if (getCamiones().get(x).puedoHacerViaje( p.getCoordX(), p.getCoordY() )){
+
+                nuevoEstado.getCamiones().get(x).llenarGasolinera(
+                        nuevoEstado.getPeticiones().get(y).getCoordX(),
+                        nuevoEstado.getPeticiones().get(y).getCoordY() );
+
+                nuevoEstado.getPeticiones().get(y).setCumplido(true);
+
+                modificado = true;
+            }
+
+        }
+
+        retVal.add(new Successor(nuevoEstado.toString(), nuevoEstado));
         return (retVal);
     }
 }
