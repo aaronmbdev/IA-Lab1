@@ -24,7 +24,7 @@ import java.util.Properties;
  */
 public class GasolinerasDemo {
     public static void main(String[] args){
-        Experimento6();
+        Experimento5();
     }
 
     private static void Experimento1() {
@@ -67,6 +67,114 @@ public class GasolinerasDemo {
             long finR = init + (s1Fin - s1Init) + (s2Fin - s2Init) + (s3Fin - s3Init);
 
             System.out.println("Fin de réplica - Tiempo: " + finR + " ms");
+        }
+        System.out.println("----FIN DE EXPERIMENTO----");
+    }
+
+
+        private static void Experimento3(){
+     //   System.out.println("Experimento 3 -->");
+        for(int i = 1; i <= 10; i++) {
+
+            int seed = Utils.getRandNumber(10000);
+            System.out.println("Réplica "+i+" Seed: "+seed);
+
+            Gasolineras gas = new Gasolineras(100,seed);
+            CentrosDistribucion dist = new CentrosDistribucion(10,1,seed);
+            Map<Integer,Camion> camiones = CamionFactory.fromDistributionCenter(dist);
+            Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
+
+
+
+            Estado inicialDM = EstadoFactory.createStateDMinus(camiones, peticiones);
+            SimulatedAnnealingSearchAux(inicialDM, 1000);
+
+
+          //  }
+        }
+        System.out.println("----FIN DEL EXPERIMENTO 3----");
+    }
+
+
+
+    private static void Experimento4(){
+        System.out.println("Experimento 4 -->");
+
+
+
+        double[] mediasTiemposHillClimbing = new double[10];
+        double[] mediasTiemposSimulatedAnnealing = new double[10];
+
+        //genera proporciones
+        for(int i = 1; i <= 10 ; i++){
+            double[] tiemposHillClimbing = new double[10];
+            double[] tiemposSimulatedAnnealing = new double[10];
+
+            //genera semillas
+            for(int j = 0; j < 10 ; j++) {
+
+                int seed = Utils.getRandNumber(10000);
+                //System.out.println("Réplica " + i + " Seed: " + seed);
+                long inicio = System.currentTimeMillis();
+                Gasolineras gas = new Gasolineras(i*100, seed);
+                CentrosDistribucion dist = new CentrosDistribucion(i*10, 1, seed);
+                Map<Integer, Camion> camiones = CamionFactory.fromDistributionCenter(dist);
+                Map<Integer, Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
+                long fin = System.currentTimeMillis();
+                long init = fin - inicio;
+
+
+
+                long HCInit = System.currentTimeMillis();
+                Estado incialDM = EstadoFactory.createStateDMinus(camiones, peticiones);
+                HillClimbingSearchAux(incialDM);
+                long HCFin = System.currentTimeMillis();
+                long HC = init + (HCFin - HCInit);
+
+
+                long SAInit = System.currentTimeMillis();
+                Estado inicialDM = EstadoFactory.createStateDMinus(camiones, peticiones);
+                SimulatedAnnealingSearchAux(inicialDM, 1000);
+                long SAFin = System.currentTimeMillis();
+                long SA = init + (SAFin - SAInit);
+
+
+
+                tiemposHillClimbing[j] = HC;
+                tiemposSimulatedAnnealing[j] = SA;
+            }
+            for(int k = 0; k < 10 ; k++){
+                mediasTiemposHillClimbing[i-1] += tiemposHillClimbing[k];
+                mediasTiemposSimulatedAnnealing[i-1] += tiemposSimulatedAnnealing[k];
+            }
+            mediasTiemposHillClimbing[i-1] = mediasTiemposHillClimbing[i-1] / 10;
+            mediasTiemposSimulatedAnnealing[i-1] = mediasTiemposSimulatedAnnealing[i-1] / 10;
+
+            Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
+            long fin = System.currentTimeMillis();
+            long init = fin-inicio;
+
+            System.out.println("SubExperimento 1: VersiónA");
+            long s2Init = System.currentTimeMillis();
+            Estado inicialDM1 = EstadoFactory.createStateDMinus(camiones1,peticiones);
+            HillClimbingSearchAux(inicialDM1);
+            long s2Fin = System.currentTimeMillis();
+            long s2 = init + (s2Fin - s2Init);
+            System.out.println("Fin de SubExperimento 1. Tiempo :" + s2 + "ms");
+
+            System.out.println("SubExperimento 2: VersiónB");
+            long s3Init = System.currentTimeMillis();
+            Estado incialDM2 = EstadoFactory.createStateDMinus(camiones2,peticiones);
+            HillClimbingSearchAux(incialDM2);
+            long s3Fin = System.currentTimeMillis();
+            long s3 = init + (s3Fin - s3Init);
+            System.out.println("Fin de SubExperimento 2. Tiempo :" + s3 + "ms");
+
+            //long finR = init + s3Fin - s3Init;
+
+            System.out.println("Fin de réplica");
+
+            //System.out.println("Fin de réplica - Tiempo: " + finR + " ms");
         }
         System.out.println("----FIN DE EXPERIMENTO----");
     }
@@ -137,6 +245,38 @@ public class GasolinerasDemo {
 
         System.out.println("----FIN DE EXPERIMENTO----");
     }
+
+
+
+
+
+    private static void Experimento8(){
+        System.out.println("Experimento 8 -->");
+        for(int i = 1; i <= 10; i++) {
+            int seed = Utils.getRandNumber(1234);
+            System.out.println("Réplica "+i+" Seed: "+seed);
+            long inicio = System.currentTimeMillis();
+            Gasolineras gas = new Gasolineras(100,seed);
+            CentrosDistribucion dist = new CentrosDistribucion(10,1,seed);
+            Map<Integer,Camion> camiones = CamionFactory.fromDistributionCenter(dist);
+            Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
+            long fin = System.currentTimeMillis();
+            long init = fin-inicio;
+
+
+
+            long s3Init = System.currentTimeMillis();
+            Estado incialDM = EstadoFactory.createStateDMinus(camiones,peticiones);
+            HillClimbingSearchAux(incialDM);
+            long s3Fin = System.currentTimeMillis();
+            long s3 = init + (s3Fin - s3Init);
+            long finR = init + (s3Fin - s3Init);
+
+            System.out.println("Tiempo: " + finR + " ms");
+        }
+        System.out.println("----FIN DEL EXPERIMENTO 8----");
+    }
+
 
 
     private static void HillClimbingSearchAux( Estado board) {
