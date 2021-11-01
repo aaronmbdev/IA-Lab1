@@ -23,6 +23,10 @@ public class Camion  {
 
     }
 
+    public int getKmDisponibles() {
+        return kmDisponibles;
+    }
+
     public Camion getCopy(){
         Camion c = new Camion();
         c.coordBaseX = this.coordBaseX;

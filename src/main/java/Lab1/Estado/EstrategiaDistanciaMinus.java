@@ -27,10 +27,12 @@ public class EstrategiaDistanciaMinus extends EstrategiaDistancia{
                 nuevoEstado.getCamiones().get(camionEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
                 p.setCumplido(true);
                 nuevoEstado.computeBalance();
+                nuevoEstado.computeKms();
                 retVal.add(new Successor(getActionFromState(camionEntry.getKey(),
                         nuevoEstado.getCamiones().get(camionEntry.getKey()),
                         nuevoEstado.getPeticiones().get(index),
-                        nuevoEstado.getBalance()),nuevoEstado));
+                        nuevoEstado.getBalance(),
+                        nuevoEstado.getKms()),nuevoEstado));
             }
         }
         return retVal;

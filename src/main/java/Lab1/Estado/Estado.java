@@ -11,6 +11,7 @@ public abstract class Estado {
     private Map<Integer,Camion> camiones;
     private Map<Integer,Peticion> peticiones;
     private double balance;
+    private int kms;
 
     protected Map<Integer, Camion> getCamiones() {
         return camiones;
@@ -83,7 +84,7 @@ public abstract class Estado {
                         Estado nuevoEstado = EstadoFactory.createStateFromPrevious(this);
                         nuevoEstado.getCamion(cEntry.getKey()).atenderPeticion(p.getCoordX(),p.getCoordY(),p.getDiasPendiente());
                         nuevoEstado.computeBalance();
-                        retVal.add(new Successor(getActionFromState(cEntry.getKey(),nuevoEstado.getCamion(cEntry.getKey()),p,this.balance),nuevoEstado));
+                        retVal.add(new Successor(getActionFromState(cEntry.getKey(),nuevoEstado.getCamion(cEntry.getKey()),p,this.balance,this.kms),nuevoEstado));
                     }
                 }
             }
@@ -92,12 +93,23 @@ public abstract class Estado {
         return (retVal);
     }
 
+    protected void computeKms() {
+        int kms = 0;
+        for(Map.Entry<Integer,Camion> camionEntry:camiones.entrySet()) {
+            kms = kms + (640 - camionEntry.getValue().getKmDisponibles());
+        }
+        this.kms = kms;
+    }
+
     protected double getBalance() {
         return this.balance;
     }
+    protected int getKms() {
+        return this.kms;
+    }
 
-    protected String getActionFromState(Integer i,Camion c, Peticion p, double balance) {
-        return "Camion " + i + " viaja a repostar ["+p.getCoordX()+","+p.getCoordY()+"] y tiene un beneficio de "+c.calcularBeneficio() + " - Balance: " + balance;
+    protected String getActionFromState(Integer i,Camion c, Peticion p, double balance, int kms) {
+        return "Camion " + i + " viaja a repostar ["+p.getCoordX()+","+p.getCoordY()+"] y tiene un beneficio de "+c.calcularBeneficio() + " - Balance: " + balance+ " KMS: "+kms;
     }
 
     public double getHeuristicValue() {
