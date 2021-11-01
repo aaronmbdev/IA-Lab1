@@ -54,11 +54,19 @@ public abstract class Estado {
 
 
     public boolean isGoalState() {
-        for(Map.Entry<Integer,Camion> entry: camiones.entrySet()) {
-            if(entry.getValue().mePuedoMover()) return false;
+        if(quedanPeticionesPendientes()) {
+            for(Map.Entry<Integer,Camion> entry: camiones.entrySet()) {
+                if(entry.getValue().mePuedoMover()) return false;
+            }
         }
         return true;
+    }
 
+    private boolean quedanPeticionesPendientes() {
+        for(Map.Entry<Integer,Peticion> entry:peticiones.entrySet()) {
+            if(!entry.getValue().isCumplido()) return true;
+        }
+        return false;
     }
 
     public List getSuccessors() {
