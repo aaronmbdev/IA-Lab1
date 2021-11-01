@@ -24,7 +24,7 @@ import java.util.Properties;
  */
 public class GasolinerasDemo {
     public static void main(String[] args){
-        Experimento1();
+        Experimento5();
     }
 
     private static void Experimento1() {
@@ -72,7 +72,47 @@ public class GasolinerasDemo {
     }
 
 
+    private static void Experimento5() {
+        System.out.println("Experimento 5 -->");
+        for(int i = 1; i <= 10; i++) {
+            int seed = Utils.getRandNumber(10000);
+            System.out.println("Réplica "+i+" Seed: "+seed);
+            long inicio = System.currentTimeMillis();
+            Gasolineras gas = new Gasolineras(100,seed);
+            CentrosDistribucion dist1 = new CentrosDistribucion(10,1,seed);
+            CentrosDistribucion dist2 = new CentrosDistribucion(5,2,seed);
 
+            Map<Integer,Camion> camiones1 = CamionFactory.fromDistributionCenter(dist1);
+            Map<Integer,Camion> camiones2 = CamionFactory.fromDistributionCenter(dist2);
+
+            Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
+            long fin = System.currentTimeMillis();
+            long init = fin-inicio;
+
+            System.out.println("SubExperimento 1: VersiónA");
+            long s2Init = System.currentTimeMillis();
+            Estado inicialDM1 = EstadoFactory.createStateDMinus(camiones1,peticiones);
+            HillClimbingSearchAux(inicialDM1);
+            long s2Fin = System.currentTimeMillis();
+            long s2 = init + (s2Fin - s2Init);
+            System.out.println("Fin de SubExperimento 1. Tiempo :" + s2 + "ms");
+
+            System.out.println("SubExperimento 2: VersiónB");
+            long s3Init = System.currentTimeMillis();
+            Estado incialDM2 = EstadoFactory.createStateDMinus(camiones2,peticiones);
+            HillClimbingSearchAux(incialDM2);
+            long s3Fin = System.currentTimeMillis();
+            long s3 = init + (s3Fin - s3Init);
+            System.out.println("Fin de SubExperimento 2. Tiempo :" + s3 + "ms");
+
+            //long finR = init + s3Fin - s3Init;
+
+            System.out.println("Fin de réplica");
+
+            //System.out.println("Fin de réplica - Tiempo: " + finR + " ms");
+        }
+        System.out.println("----FIN DE EXPERIMENTO----");
+    }
 
 
     private static void HillClimbingSearchAux( Estado board) {
