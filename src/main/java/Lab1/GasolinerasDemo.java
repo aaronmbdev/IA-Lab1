@@ -24,7 +24,7 @@ import java.util.Properties;
  */
 public class GasolinerasDemo {
     public static void main(String[] args){
-        Experimento5();
+        Experimento6();
     }
 
     private static void Experimento1() {
@@ -111,6 +111,30 @@ public class GasolinerasDemo {
 
             //System.out.println("Fin de réplica - Tiempo: " + finR + " ms");
         }
+        System.out.println("----FIN DE EXPERIMENTO----");
+    }
+
+    private static void Experimento6() {
+        System.out.println("Experimento 6 -->");
+        //int seed = Utils.getRandNumber(10000);
+        int seed = 8406;
+
+        System.out.println("Seed: "+seed);
+        long inicio = System.currentTimeMillis();
+        Gasolineras gas = new Gasolineras(100,seed);
+        CentrosDistribucion dist1 = new CentrosDistribucion(10,1,seed);
+        Map<Integer,Camion> camiones1 = CamionFactory.fromDistributionCenter(dist1);
+        Map<Integer,Peticion> peticiones = PeticionFactory.fromGasolineras(gas);
+        long fin = System.currentTimeMillis();
+        long init = fin-inicio;
+
+        long s2Init = System.currentTimeMillis();
+        Estado inicialDM = EstadoFactory.createStateDMinus(camiones1,peticiones);
+        HillClimbingSearchAux(inicialDM);
+        long s2Fin = System.currentTimeMillis();
+        long s2 = init + (s2Fin - s2Init);
+        System.out.println("Tiempo :" + s2 + "ms");
+
         System.out.println("----FIN DE EXPERIMENTO----");
     }
 
