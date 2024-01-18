@@ -46,8 +46,8 @@
                 "height": 100
               },
               "position": {
-                "x": 339,
-                "y": 245
+                "x": 344,
+                "y": 279
               },
               "angle": 0,
               "id": "dc98bf98-573a-430b-b9bd-fe7afbb9230d",
@@ -72,8 +72,8 @@
                 "height": 100
               },
               "position": {
-                "x": 464,
-                "y": 410
+                "x": 470,
+                "y": 362
               },
               "angle": 0,
               "id": "f2d3a413-a092-4fcc-837f-a17551594d29",
@@ -98,8 +98,8 @@
                 "height": 100
               },
               "position": {
-                "x": 575,
-                "y": 253
+                "x": 607,
+                "y": 271
               },
               "angle": 0,
               "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c",
@@ -228,8 +228,8 @@
                 "height": 80
               },
               "position": {
-                "x": 430,
-                "y": 536
+                "x": 439,
+                "y": 476
               },
               "angle": 0,
               "id": "b906cda4-1916-44b6-a988-0f240911138f",
@@ -244,6 +244,303 @@
                 },
                 ".element-text": {
                   "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "321fe06b-f5a4-4bc5-bcc9-79f1b2b49fce"
+              },
+              "target": {
+                "id": "dc98bf98-573a-430b-b9bd-fe7afbb9230d"
+              },
+              "vertices": [],
+              "id": "e0afa367-ff0e-430d-ba95-c405b725b4a8",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "1. POST /api/devices",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "dc98bf98-573a-430b-b9bd-fe7afbb9230d"
+              },
+              "target": {
+                "id": "fc27543c-c389-4b5e-86fe-4b1299fd9872"
+              },
+              "vertices": [
+                {
+                  "x": 311,
+                  "y": 208
+                },
+                {
+                  "x": 291,
+                  "y": 161
+                }
+              ],
+              "id": "375b7205-66fa-4f0e-b467-1fe3fc36fff8",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "2. Obtain app config",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 11,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "dc98bf98-573a-430b-b9bd-fe7afbb9230d"
+              },
+              "target": {
+                "id": "9b13447e-4f4b-441a-bd23-615a329aeee1"
+              },
+              "vertices": [],
+              "id": "8f21d83f-6bc6-4d31-bc75-411d200ed99a",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.7660915747872966,
+                    "offset": -21.344875701595626
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "3. Obtain app secrets",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 12,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "dc98bf98-573a-430b-b9bd-fe7afbb9230d"
+              },
+              "target": {
+                "id": "da6d6e56-4414-4662-b884-57198b3c551a"
+              },
+              "vertices": [],
+              "id": "9d162360-5a58-49ef-8c9e-3191190ecd00",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.7568506819713494,
+                    "offset": 13.049324512060023
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "4. Obtain auth\ninformation",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 13,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "dc98bf98-573a-430b-b9bd-fe7afbb9230d"
+              },
+              "target": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "vertices": [],
+              "id": "a8032ce7-4c47-46ee-ba0b-2b25bb1d4a27",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "5. Forward request",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 14,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "fc27543c-c389-4b5e-86fe-4b1299fd9872"
+              },
+              "vertices": [
+                {
+                  "x": 373,
+                  "y": 232
+                }
+              ],
+              "id": "d6b4c1e3-82a7-43b8-8293-1d44f1135820",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.8041516727941175,
+                    "offset": 5.479418221903711
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "6. Obtain app config",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 15,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "9b13447e-4f4b-441a-bd23-615a329aeee1"
+              },
+              "vertices": [
+                {
+                  "x": 527,
+                  "y": 219
+                }
+              ],
+              "id": "a11a4957-0577-4434-8d8d-a7f21e0d1627",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.5279754904191255,
+                    "offset": -13.740941318610266
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "7. Obtain app secrets",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 16,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
                 }
               }
             }
