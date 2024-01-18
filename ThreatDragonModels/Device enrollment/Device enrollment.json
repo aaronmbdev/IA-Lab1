@@ -521,8 +521,8 @@
               "labels": [
                 {
                   "position": {
-                    "distance": 0.5279754904191255,
-                    "offset": -13.740941318610266
+                    "distance": 0.7046228062367872,
+                    "offset": -27.904851126258503
                   },
                   "attrs": {
                     "text": {
@@ -534,6 +534,274 @@
                 }
               ],
               "z": 16,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "fc27543c-c389-4b5e-86fe-4b1299fd9872"
+              },
+              "vertices": [
+                {
+                  "x": 514,
+                  "y": 261
+                },
+                {
+                  "x": 402,
+                  "y": 208
+                }
+              ],
+              "id": "63132732-d0fd-4fee-ba3c-a6de0fb9967b",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "8. Get existing\ninformation",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 17,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "26cf1dfd-c0ab-4ae0-9af8-4aab065432e0"
+              },
+              "vertices": [
+                {
+                  "x": 798,
+                  "y": 198
+                }
+              ],
+              "id": "4f9b8d2d-36e3-4793-8c36-40f545d00d39",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.5362915892162304,
+                    "offset": 1.0578762514691455
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "9. Create device",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 18,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "26cf1dfd-c0ab-4ae0-9af8-4aab065432e0"
+              },
+              "vertices": [
+                {
+                  "x": 805,
+                  "y": 246
+                }
+              ],
+              "id": "a2d75f66-0b4f-434f-9fa3-ca8866bc78c0",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "10. Set event hub",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 19,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "26cf1dfd-c0ab-4ae0-9af8-4aab065432e0"
+              },
+              "vertices": [
+                {
+                  "x": 829,
+                  "y": 301
+                }
+              ],
+              "id": "8f7466ad-469b-47a4-b29a-2ee101dcb1ca",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "11. Set device\ncertificate",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 20,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "26cf1dfd-c0ab-4ae0-9af8-4aab065432e0"
+              },
+              "vertices": [
+                {
+                  "x": 838,
+                  "y": 362
+                }
+              ],
+              "id": "5b2be980-9347-4bbd-8600-cfdef0dfcdb6",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "[OPT] Delete device\non error",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 21,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "913bffd7-b68d-4f00-b991-6b4ddb3dad3c"
+              },
+              "target": {
+                "id": "fc27543c-c389-4b5e-86fe-4b1299fd9872"
+              },
+              "vertices": [
+                {
+                  "x": 431,
+                  "y": 189
+                }
+              ],
+              "id": "35605bf4-001e-4e3c-9948-f7ae96ba4af7",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.5954693070953623,
+                    "offset": 3.092097108878648
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "12. Register device in\nDDBB",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 22,
               "hasOpenThreats": false,
               "attrs": {
                 ".marker-target": {
